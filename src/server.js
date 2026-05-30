@@ -9,7 +9,7 @@ const init = async () => {
 
     routes.forEach(route => server.route(route));
 
-    await server.start();ç
+    await server.start();
     console.log('Server running on %s', server.info.uri);
 };
 
