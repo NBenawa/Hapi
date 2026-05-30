@@ -14,6 +14,16 @@ const init = async () => {
         }
     });
 
+    server.route({
+        method: 'POST',
+        path: '/echo',
+        handler: (request, h) => {
+            const payload = request.payload;
+            const name = payload.name || 'Stranger';
+            return `Hello, ${name}!`;
+        }
+    });
+
     await server.start();
     console.log('Server running on %s', server.info.uri);
 };
