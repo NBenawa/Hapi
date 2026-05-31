@@ -6,16 +6,16 @@ export const addViewToListingRoute = {
     handler: async (req, h) => {
         const listingId = req.params.id;
 
-        await db.execute(
-            'UPDATE listings SET views = IFNULL(views, 0) + 1 WHERE id = ?',
+        await db.query(
+            'UPDATE listings SET views = views + 1 WHERE id = ?',
             [listingId]
         );
 
-        const [rows] = await db.execute(
+        const results = await db.query(
             'SELECT * FROM listings WHERE id = ?',
             [listingId]
         );
 
-        return rows[0];
+        return results[0];
     }
 };
