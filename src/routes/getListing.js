@@ -1,4 +1,5 @@
 import { fakeListings } from './fake-data';
+import boom from '@hapi/boom';
 
 export const getListingRoute = {
     method: 'GET',
