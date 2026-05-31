@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
 
 export const db = {
     connect: () => connection.connect(),
-    query: (queryString, excapedValues) => 
+    query: (queryString, escapedValues) => 
         new Promise((resolve, reject) => {
             connection.query(queryString, escapedValues, (err, results, fields) => {
                 if (err) {
