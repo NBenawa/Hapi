@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise';
 
-const connection = await mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'appuser',
     password: 'apppass',
@@ -8,8 +8,16 @@ const connection = await mysql.createConnection({
 });
 
 export const db = {
-    query: async (sql, params = []) => {
-        const [rows] = await connection.execute(sql, params);
-        return rows;
-    }
+    connect: async () => await connection,
+    
+    query: async (queryString, escapedValues = []) => {
+        const conn = await connection;
+        const [results] = await conn.execute(queryString, escapedValues);
+        return results;
+    },
+
+    end: async () => {
+        const conn = await connection;
+        await conn.end();
+    },
 };
