@@ -5,7 +5,13 @@ import { db } from './database'
 const init = async () => {
     const server = Hapi.server({
         port: 3000,
-        host: 'localhost'
+        host: 'localhost',
+        routes: {
+            cors: {
+                origin: ['http://localhost:3000'],
+                credentials: true
+            }
+        }
     });
 
     routes.forEach(route => server.route(route));
