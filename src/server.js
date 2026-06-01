@@ -8,7 +8,7 @@ const init = async () => {
         host: 'localhost',
         routes: {
             cors: {
-                origin: ['http://localhost:3000'],
+                origin: ['http://localhost:4200'],
                 credentials: true
             }
         }
